@@ -33,7 +33,7 @@ function startShow() {
         currentSlideIndex = currentSlideIndex < lastSlideIndex ? ++currentSlideIndex : 0
         slider.children[currentSlideIndex].style.opacity = 1
         slider.children[currentSlideIndex].style.zIndex = 1   
-    }, 3000)
+    }, 6000)
 }
 
 startShow()
