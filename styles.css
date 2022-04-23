@@ -28,6 +28,11 @@ a {
     text-decoration: none;
 }
 
+header {
+    position: relative;
+    z-index: 2;
+}
+
 .nav_header_widescreen {
     display: none;
 }
