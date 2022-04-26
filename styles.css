@@ -386,6 +386,7 @@ header {
     z-index: 1;
     background-image: url('assets/slide_1.png');
     background-position: center;
+    background-size: auto 120%;
 }
 
 .slide:nth-child(2) {
@@ -458,7 +459,8 @@ section {
     align-items: center;
 }
 
-.mission::before {
+.mission::before,
+.mission_intro::before {
     content: '';
     position: absolute;
     bottom: -25px;
@@ -470,6 +472,7 @@ section {
     height: 100%;
     background-size: 40%;
     background-position: bottom right;
+    z-index: -1;
 }
 
 .section_text {
@@ -487,6 +490,10 @@ section {
     max-width: 788px;
 }
 
+.mission_intro .section_text {
+    max-width: 950px;
+}
+
 .section_description {
     text-align: left;
     margin-top: 30px;
@@ -494,13 +501,15 @@ section {
 
 .mission .section_title,
 .stories .section_title,
-.accounting .section_title {
+.accounting .section_title,
+.mission_intro .section_title {
     position: relative;
 }
 
 .mission .section_title::before, 
 .stories .section_title::before,
-.accounting .section_title::before {
+.accounting .section_title::before,
+.mission_intro .section_title::before {
     content: '';
     position: absolute;
     bottom: -13px;
@@ -546,6 +555,58 @@ section {
     display: none;
 }
 
+.mission_intro {
+    position: relative;
+}
+
+.mission_intro .mission_intro_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1540px;
+}
+
+.mission_img_wrapper {
+    width: 100%;
+    max-width: 464px;
+    margin-top: 50px;
+}
+
+.mission_img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.mission_description {
+    background-color: #338EEE;
+    padding-bottom: 0;
+}
+
+.mission_description .section_text {
+    color: #FFF;
+}
+
+.mission_description .mission_img_wrapper {
+    max-width: 975px;
+    margin-top: 50px;
+}
+
+.mission_description .section_description {
+    margin-top: 0;
+}
+
+.mission_goal .section_icon {
+    background-image: url('assets/mission_goal_icon.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 174px;
+    height: 134px;
+}
+
+.mission_goal .section_text {
+    max-width: 985px;
+}
 /* Media Queries ---------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 @media only screen and (min-width: 480px) {
@@ -590,6 +651,15 @@ section {
         height: 438px;
     }
 
+    .slide:nth-child(1) {
+        background-size: auto 140%;
+    }
+
+    .slide:nth-child(1) .slide_content_wrapper {
+        position: relative;
+        top: -35px;
+    }
+
     .slide:nth-child(2) .wrapper {
         display: flex;
         justify-content: flex-end;
@@ -616,6 +686,49 @@ section {
 
     .mission .section_description {
         text-align: center;
+    }
+
+    .mission_intro::before {
+        top: -12px;
+        left: 0;
+        background-size: 50%;
+        transform: rotate(180deg);
+        z-index: -1;    
+    }
+
+    .mission_intro .mission_intro_wrapper {
+        flex-direction: row-reverse;
+    }
+
+    .mission_intro .mission_img_wrapper {
+        margin-top: 0;
+        margin-right: 70px;
+    }
+
+    .mission_description {
+        padding: 0;
+    }
+
+    .mission_description .mission_intro_wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .mission_description .section_content_wrapper {
+        width: 50%;
+    }
+
+    .mission_description .section_description {
+        max-width: 645px;
+        padding-left: 50px;
+        padding-right: 50px;
+        text-align: left;
+    }
+
+    .mission_description .mission_img_wrapper {
+        width: 50%;
+        margin-top: 0;
     }
 
     .footer .logo_name {
@@ -687,6 +800,11 @@ section {
 
     .mission::before {
         background-size: 50%;
+    }
+
+    .mission_intro::before {
+        background-size: 70%;
+        top: -18px;
     }
 
     .accounting {
@@ -762,6 +880,10 @@ section {
         font-size: 18px;
     }
 
+    .slide:nth-child(1) .slide_content_wrapper {
+        top: -70px;
+    }
+
     .slide:nth-child(1) .section_description {
         width: 350px;
     }
@@ -770,12 +892,30 @@ section {
         background-size: 70%;
     }
 
+    .mission_intro::before {
+        background-size: 100%;
+        top: -25px;
+    }
+
     .mission .section_title::before, 
     .stories .section_title::before,
-    .accounting .section_title::before {
+    .accounting .section_title::before,
+    .mission_intro .section_title::before {
         bottom: -16px;
         width: 50px;
         height: 4px;
+    }
+
+    .mission_intro .mission_intro_wrapper {
+        justify-content: space-around;
+    }
+
+    .mission_intro .mission_img_wrapper {
+        margin-left: 50px;
+    }
+
+    .mission_description .section_description {
+        text-align: center;
     }
 
     .section_description {
@@ -835,6 +975,11 @@ section {
 @media only screen and (min-width: 1440px) {
     .carousel {
         height: 663px;
+    }
+
+    .mission_description .section_description {
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
@@ -900,9 +1045,8 @@ section {
         height: 975px;
     }
 
-    .slide_content_wrapper {
-        position: relative;
-        top: -60px;
+    .slide:nth-child(1) {
+        background-size: auto 120%;
     }
 
     section {
@@ -925,7 +1069,8 @@ section {
         padding-bottom: 188px;
     }
 
-    .mission::before {
+    .mission::before,
+    .mission_intro::before {
         background-size: 100%;
     }
 

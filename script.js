@@ -16,32 +16,34 @@ closeIcon.onclick = () => {
 
 // Slider with fade effect slide show
 
-let currentSlideIndex = 0
-let lastSlideIndex = slider.children.length - 1
-let intervalID = 0
+if(carouselSlider) {
+    let currentSlideIndex = 0
+    let lastSlideIndex = slider.children.length - 1
+    let intervalID = 0
 
-function resetSlides() {
-    for(let i = 0; i < slider.children.length; i++) {
-        slider.children[i].style.opacity = 0
-        slider.children[i].style.zIndex = 0
+    function resetSlides() {
+        for(let i = 0; i < slider.children.length; i++) {
+            slider.children[i].style.opacity = 0
+            slider.children[i].style.zIndex = 0
+        }
     }
-}
 
-function startShow() {
-    intervalID = setInterval(() => {
-        resetSlides()
-        currentSlideIndex = currentSlideIndex < lastSlideIndex ? ++currentSlideIndex : 0
-        slider.children[currentSlideIndex].style.opacity = 1
-        slider.children[currentSlideIndex].style.zIndex = 1   
-    }, 6000)
-}
+    function startShow() {
+        intervalID = setInterval(() => {
+            resetSlides()
+            currentSlideIndex = currentSlideIndex < lastSlideIndex ? ++currentSlideIndex : 0
+            slider.children[currentSlideIndex].style.opacity = 1
+            slider.children[currentSlideIndex].style.zIndex = 1   
+        }, 6000)
+    }
 
-startShow()
-
-carouselSlider.onmouseover = () => {
-    clearInterval(intervalID)
-}
-
-carouselSlider.onmouseout = () => {
     startShow()
+
+    carouselSlider.onmouseover = () => {
+        clearInterval(intervalID)
+    }
+
+    carouselSlider.onmouseout = () => {
+        startShow()
+    }
 }
