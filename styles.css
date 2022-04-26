@@ -594,6 +594,10 @@ section {
 
 .mission_description .section_description {
     margin-top: 0;
+    max-width: 645px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
 }
 
 .mission_goal .section_icon {
