@@ -657,6 +657,7 @@ section {
     align-items: flex-start;   
     width: 100%;
     margin-bottom: 15px;
+    position: relative;
 }
 
 .main_form ul li:last-child {
@@ -718,6 +719,16 @@ section {
     align-self: center;
     color: #777777;
     margin-top: 10px;
+}
+
+.error_name,
+.error_email,
+.error_msg {
+    position: absolute;
+    left: 50%;
+    bottom: -22px;
+    transform: translateX(-50%);
+    color: red;
 }
 
 /* Media Queries ---------------------------------------------------------------------------------------------------------------------------------------------------- */

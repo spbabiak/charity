@@ -47,3 +47,93 @@ if(carouselSlider) {
         startShow()
     }
 }
+
+/* Form -------------------------------------------------------------------------------------------------------------------------------*/
+
+const form = document.querySelector('#main_form')
+if(form) {
+	// Form fields validation
+	const errorName = document.querySelector('.error_name')
+	const errorEmail = document.querySelector('.error_email')
+    const errorMsg = document.querySelector('.error_msg')
+
+	function sendData() {
+    const XHR = new XMLHttpRequest()
+
+    // Bind the FormData object and the form element
+    const FD = new FormData( form )
+
+    var name = FD.get('name')
+    var email = FD.get('email')
+    var msg = FD.get('message')
+
+    // Define what happens on successful data submission
+    XHR.addEventListener( "load", function(event) {
+      alert( event.target.responseText )
+    });
+
+    // Define what happens in case of error
+    XHR.addEventListener( "error", function( event ) {
+      alert( 'Oops! Something went wrong.' )
+    });
+
+    var errorCounter = 0;
+		var nameFormat = /^[a-zA-Z\s]*$/
+		var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        var msgFormat = /^[a-zA-Z0-9?$@#()'!,+\-=_:.&€£*%\s]+$/
+
+		if(name == '') {
+			++errorCounter;
+            errorName.style.color = 'red'
+			errorName.innerHTML = 'This field is required'
+		} else if(name.match(nameFormat)) {
+			errorName.style.color = 'green'
+			errorName.innerHTML = '✓ Valid'
+		} else {
+			++errorCounter;
+            errorName.style.color = 'red'
+			errorName.innerHTML = 'Only letters and spaces allowed'	
+		}
+
+		if(email == '') {
+			++errorCounter;
+            errorEmail.style.color = 'red'
+			errorEmail.innerHTML = 'This field is required'
+		} else if(email.match(mailFormat)) {
+			errorEmail.style.color = 'green'
+			errorEmail.innerHTML = '✓ Valid'
+		} else {
+			++errorCounter;
+            errorEmail.style.color = 'red'
+			errorEmail.innerHTML = 'Invalid email format'	
+		}
+
+        if(msg == '') {
+			++errorCounter;
+            errorMsg.style.color = 'red'
+			errorMsg.innerHTML = 'This field is required'
+		} else if(msg.match(msgFormat)) {
+			errorMsg.style.color = 'green'
+			errorMsg.innerHTML = '✓ Valid'
+		} else {
+			++errorCounter;
+            errorMsg.style.color = 'red'
+			errorMsg.innerHTML = 'Invalid message format'	
+		}
+
+		if(errorCounter == 0) {
+            // Set up our request
+            XHR.open( "POST", "FormDataHandler.php" )
+
+            // The data sent is what the user provided in the form
+            XHR.send( FD )
+        }
+	}
+
+	form.addEventListener('submit', event => {
+		event.preventDefault()
+		sendData()
+	})
+}
+
+/* Form END -------------------------------------------------------------------------------------------------------------------------------*/
