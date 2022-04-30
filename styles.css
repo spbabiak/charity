@@ -751,6 +751,25 @@ section {
     color: red;
 }
 
+.donation {
+    position: relative;
+}
+
+.donation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url('assets/donation_decor.png');
+    background-repeat: no-repeat;
+    width: 100%;
+    max-width: 788px;
+    height: 100%;
+    background-size: 40%;
+    background-position: top right;
+    z-index: -1;    
+}
+
 .donation .section_content_wrapper {
     align-items: flex-start;
 }
@@ -1355,6 +1374,10 @@ section {
         text-align: left;
     }
 
+    .donation::before {
+        background-size: 50%;
+    }
+
     .donation_icons_wrapper fieldset legend,
     .donation_list .donation_item label {
         font-size: 18px;
@@ -1490,6 +1513,10 @@ section {
         height: 40px;
     }
 
+    .donation::before {
+        background-size: 70%;
+    }
+
     .donation_subsctiption_wrapper .checkmark:after {
         width: 10px;
         height: 20px;
@@ -1545,6 +1572,10 @@ section {
     .mission_description .section_description {
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .donation::before {
+        background-size: 100%;
     }
 }
 

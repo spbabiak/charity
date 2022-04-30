@@ -147,7 +147,7 @@ donationItemsArray.forEach(item => {
     item.onclick = () => {
         if(donationItemChecked === 0) {
             item.style.border = '5px solid #338EEE'
-            item.style.margin = '-4px'
+            item.style.margin = (window.innerWidth < 768) ? 0 : '-4px'
             item.querySelector('label').style.color = '#338EEE'
             item.querySelector('input').value = 1
             donationItemChecked = 1
@@ -162,9 +162,14 @@ donationItemsArray.forEach(item => {
 
 const donationAmount = document.querySelector('.donation_amount_wrapper .amount')
 var donationAmountFormat = /^[\d.]+$/
-donationAmount.onclick = (e) => {
+donationAmount.onfocus = (e) => {
     if(e.target.value === '0.00') e.target.value = ''
+}
 
+donationAmount.onblur = (e) => {
+    if(e.target.value === '') {
+        e.target.value = '0.00'
+    }
 }
 
 donationAmount.oninput = (e) => {
