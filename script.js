@@ -136,4 +136,37 @@ if(form) {
 	})
 }
 
-/* Form END -------------------------------------------------------------------------------------------------------------------------------*/
+/* Form END ------------------------------------------------------------------------------------------------*/
+
+const donationList = document.querySelector('.donation_list')
+const donationItems = donationList.querySelectorAll('.donation_item')
+const donationItemsArray = Array.from(donationItems)
+
+donationItemsArray.forEach(item => {
+    let donationItemChecked = 0
+    item.onclick = () => {
+        if(donationItemChecked === 0) {
+            item.style.border = '5px solid #338EEE'
+            item.style.margin = '-4px'
+            item.querySelector('label').style.color = '#338EEE'
+            item.querySelector('input').value = 1
+            donationItemChecked = 1
+        }else {
+            item.removeAttribute('style')
+            item.querySelector('label').removeAttribute('style')
+            item.querySelector('input').value = 0 
+            donationItemChecked = 0
+        }
+    }
+})
+
+const donationAmount = document.querySelector('.donation_amount_wrapper .amount')
+var donationAmountFormat = /^[\d.]+$/
+donationAmount.onclick = (e) => {
+    if(e.target.value === '0.00') e.target.value = ''
+
+}
+
+donationAmount.oninput = (e) => {
+    e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
+}
