@@ -108,6 +108,7 @@ for Ukraine</span>
                 </div>
                 <div class="donation_amount_wrapper">
                     <input type="text" id="amount" class="amount" name="amount" value="0.00">
+                    <span class="amount_error hidden">Please enter the donation amount</span>
                 </div>
                 <label for="subscribtion" class="donation_subsctiption_wrapper">Make this a monthly donation
                     <input type="checkbox" id="subscribtion" class="subscribtion" name="subscribtion">
@@ -116,6 +117,7 @@ for Ukraine</span>
                 <div class="donation_btns">
                     <div class="donation_button_wrapper">
                         <button class="btn btn_paypal"><span class="btn_decoration"></span>Donate with PayPal</button>
+                        <div id="paypal_button_container"></div>
                     </div>
                     <span class="btns_divider">or</span>
                     <div class="donation_button_wrapper">
@@ -204,6 +206,7 @@ for Ukraine</span>
             </div>
         </div>
     </footer>
+    <script id="paypal_script" src="https://www.paypal.com/sdk/js?client-id=AYAV599SII-2sybL8aFbjVMHGSaCpV85kbWMzC_3A6gV8ZZeZYCz3onkLVYHX8vMZdcwST5p-mk7325Y&disable-funding=credit,card"></script>
     <script src="script.js"></script>  
 </body>
 </html>

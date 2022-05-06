@@ -912,26 +912,22 @@ section {
     height: 30px;
     width: 30px;
     border: 2px solid #C8DAEA;
-  }
-
-.donation_subsctiption_wrapper input:hover ~ .checkmark {
-    background-color: #C8DAEA;
 }
-  
+
 .donation_subsctiption_wrapper input:checked ~ .checkmark {
     background-color: #338EEE;
     border-color: #338EEE;
-  }
+}
   
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
+}
   
 .donation_subsctiption_wrapper input:checked ~ .checkmark:after {
     display: block;
-  }
+}
   
 .donation_subsctiption_wrapper .checkmark:after {
     left: 50%;
@@ -992,7 +988,8 @@ section {
     margin-top: 40px;
 }
 
-.donation_button_wrapper .btn {
+.donation_button_wrapper .btn,
+#paypal_button_containter {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1000,7 +997,7 @@ section {
     height: 64px;
     color: #FFF;
     padding-left: 78px;
-    position: relative;
+    position: absolute;
 }
 
 .donation_button_wrapper .btn_paypal:hover {
@@ -1065,6 +1062,26 @@ section {
 
 .btn_gofundme .btn_decoration::before {
     background-image: url('assets/icon_gofundme.png');
+}
+
+#paypal-button-container {
+    height: 64px;
+}
+
+#paypal_button_container div:first-child {
+    opacity: 0.0000000000000000001;
+}
+
+.amount_error {
+    color: red;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hidden {
+    display: none;
 }
 
 /* Media Queries ---------------------------------------------------------------------------------------------------------------------------------------------------- */
