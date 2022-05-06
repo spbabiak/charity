@@ -199,7 +199,6 @@ paypal.Buttons({
         
         // Show a validation error if the amount is 0.00
         if (parseFloat(donationAmount.value).toFixed(2) == '0.00')  {
-            e.preventDefault
             document.querySelector('.amount_error').classList.remove('hidden')
             donationAmount.style.borderColor = 'red'
         }
@@ -246,7 +245,6 @@ subscriptionCheckbox.onchange = () => {
             
             // Show a validation error if the amount is 0.00
             if (parseFloat(donationAmount.value).toFixed(2) == '0.00')  {
-                e.preventDefault
                 document.querySelector('.amount_error').classList.remove('hidden')
                 donationAmount.style.borderColor = 'red'
             }
@@ -292,7 +290,6 @@ subscriptionCheckbox.onchange = () => {
                 
                 // Show a validation error if the amount is 0.00
                 if (parseFloat(donationAmount.value).toFixed(2) == '0.00')  {
-                    e.preventDefault
                     document.querySelector('.amount_error').classList.remove('hidden')
                     donationAmount.style.borderColor = 'red'
                 }
