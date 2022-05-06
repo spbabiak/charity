@@ -187,6 +187,7 @@ const paypalButton = document.getElementById('paypal_button_container')
 const subscriptionCheckbox = document.getElementById('subscribtion')
 
 paypal.Buttons({
+    env: 'sandbox',
     style: {
         shape: 'pill',
         color: 'blue',
@@ -217,10 +218,18 @@ paypal.Buttons({
     },
 
     onApprove: function(data, actions) {
-        // return actions.order.capture().then(function(orderData) {
-        //     const element = document.getElementsByClassName('donation_btns');
-        //     element.innerHTML = '<h3>Thank you for your payment!</h3>';
-        // })    
+        return actions.order.capture().then(function(orderData) {
+
+            // Successful capture! For dev/demo purposes:
+            // console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+            // const transaction = orderData.purchase_units[0].payments.captures[0];
+            // alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+            // When ready to go live, remove the alert and show a success message within this page. For example:
+            // const element = document.getElementById('paypal-button-container');
+            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+            // Or go to another URL:  actions.redirect('thank_you.html');
+
+        });
     }
     
 }).render('#paypal_button_container');
@@ -232,45 +241,46 @@ subscriptionCheckbox.onchange = () => {
         paypalButton.removeChild(paypalButton.firstChild)
 
         paypal.Buttons({
-        style: {
-            shape: 'pill',
-            color: 'blue',
-            layout: 'vertical',
-            label: 'paypal'
-        },
+            env: 'sandbox',
+            style: {
+                shape: 'pill',
+                color: 'blue',
+                layout: 'vertical',
+                label: 'paypal'
+            },
 
 
-        // onClick is called when the button is clicked
-        onClick: function()  {
-            
-            // Show a validation error if the amount is 0.00
-            if (parseFloat(donationAmount.value).toFixed(2) == '0.00')  {
-                document.querySelector('.amount_error').classList.remove('hidden')
-                donationAmount.style.borderColor = 'red'
-            }
-        },
-        
-        createSubscription: function(data, actions) {
-            return actions.subscription.create({
-                /* Creates the subscription */
-                plan_id: 'P-940036535U765294PMJX62GQ',
-                plan: {
-                    billing_cycles: [{
-                        pricing_scheme: {
-                            fixed_price: {
-                                currency_code: 'USD',
-                                value: parseFloat(donationAmount.value).toFixed(2)
-                            }
-                        },
-                        sequence: 1
-                    }]
+            // onClick is called when the button is clicked
+            onClick: function()  {
+                
+                // Show a validation error if the amount is 0.00
+                if (parseFloat(donationAmount.value).toFixed(2) == '0.00')  {
+                    document.querySelector('.amount_error').classList.remove('hidden')
+                    donationAmount.style.borderColor = 'red'
                 }
-            })
-        },
+            },
+            
+            createSubscription: function(data, actions) {
+                return actions.subscription.create({
+                    /* Creates the subscription */
+                    plan_id: 'P-0J165244LD3565344MJ2XL3I',
+                    plan: {
+                        billing_cycles: [{
+                            pricing_scheme: {
+                                fixed_price: {
+                                    currency_code: 'USD',
+                                    value: parseFloat(donationAmount.value).toFixed(2)
+                                }
+                            },
+                            sequence: 1
+                        }]
+                    }
+                })
+            },
+            
+            onApprove: function(data, actions) {
         
-        onApprove: function(data, actions) {
-            // alert(data.subscriptionID); // You can add optional success message for the subscriber here
-        }
+            }
 
         }).render('#paypal_button_container'); // Renders the PayPal button
     } else {
@@ -278,6 +288,7 @@ subscriptionCheckbox.onchange = () => {
         paypalScriptElement.src = paypalCheckoutScript[0] + '&' + paypalCheckoutScript[1]
         if(paypalButton.firstChild) paypalButton.removeChild(paypalButton.firstChild)
         paypal.Buttons({
+            env: 'sandbox',
             style: {
                 shape: 'pill',
                 color: 'blue',
@@ -308,7 +319,18 @@ subscriptionCheckbox.onchange = () => {
             },
             
             onApprove: function(data, actions) {
-                // alert(data.subscriptionID); // You can add optional success message for the subscriber here
+                return actions.order.capture().then(function(orderData) {
+        
+                    // Successful capture! For dev/demo purposes:
+                    // console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    // const transaction = orderData.purchase_units[0].payments.captures[0];
+                    // alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+                    // When ready to go live, remove the alert and show a success message within this page. For example:
+                    // const element = document.getElementById('paypal-button-container');
+                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                    // Or go to another URL:  actions.redirect('thank_you.html');
+        
+                });
             }
             
         }).render('#paypal_button_container');
