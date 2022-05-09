@@ -224,6 +224,10 @@ button {
     max-width: 189px;
 }
 
+.social_link {
+    display: block;
+}
+
 .social_icon {
     vertical-align: middle;
 }
@@ -304,6 +308,16 @@ button {
 .fb_social_icon:hover path {
     fill: #FED500;
     transition: fill .35s;
+}
+
+.in_social_icon path {
+    fill: #FFF;
+    transition: fill .35s;
+}
+
+.in_social_icon:hover path {
+    fill: #FED500;
+    transition: fill .35s;    
 }
 
 .tw_social_icon path {
